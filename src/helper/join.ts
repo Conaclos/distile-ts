@@ -49,9 +49,6 @@ interface JoinFunction {
     <A, B, C, D, E> (a: A, b: B, c: C, d: D, e: E): A & B & C & D & E
 }
 
-declare let deepJoin: JoinFunction
-declare let join: JoinFunction
-
 /**
  * Each pair of objects (a, b) must be conflict-free
  * (except for "constructor" property)
@@ -60,7 +57,9 @@ declare let join: JoinFunction
  * @param aOthers
  * @return Concatenation of `aFirst' and `aOthers'.
  */
-deepJoin = function (aFirst: Dictionary, ...aOthers: Dictionary[]) {
+const deepJoin: JoinFunction = function (aFirst: Dictionary,
+    ...aOthers: Dictionary[]) {
+
     const result = Object.create(aFirst) // mutable
 
     let includedProtos = prototypeChainOfUntil(aFirst, [null]).concat([null])
@@ -89,7 +88,7 @@ deepJoin = function (aFirst: Dictionary, ...aOthers: Dictionary[]) {
  *      Each one must have no property indexed by a Symbol.
  * @return Concatenation of each objects in `aSources'.
  */
-join = function (...aSources: Dictionary[]) {
+const join: JoinFunction = function (...aSources: Dictionary[]) {
     const result = {}
 
     for (let item of aSources) {
