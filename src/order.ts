@@ -140,9 +140,9 @@ const charOrder: Order<string> = join({
 
 
 export {
+    Ordering,
     Order,
     compareBasedOrder,
-    Ordering,
     intOrder,
     charOrder
 }
