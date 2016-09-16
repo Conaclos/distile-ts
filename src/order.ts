@@ -1,6 +1,6 @@
 
-import {join} from "helper/join.js"
-import {Comparator, equalBasedComparator} from "comparator.js"
+import {join} from "./helper/join.js"
+import {Comparator, equalBasedComparator} from "./comparator.js"
 
 /**
  * Possible relation between two elements in a totally ordered set.
