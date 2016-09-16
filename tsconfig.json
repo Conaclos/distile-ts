@@ -1,18 +1,20 @@
 {
-    "compilerOptions": {
-        "target": "ES6",
-        "allowJs": false,
-        "forceConsistentCasingInFileNames": true,
-        "noEmitHelpers": true,
-        "noImplicitReturns": true,
-        "strictNullChecks": true,
+  "compilerOptions": {
+    "allowJs": false,
+    "declaration": true,
+    "lib": ["dom", "es6"],
+    "target": "ES6",
+    "noEmitHelpers": true,
 
-        "pretty": true,
+    "rootDir": "./src",
+    "outDir": "./dist",
 
-        "outDir": "./bin",
-        "rootDir": "./src",
+    "forceConsistentCasingInFileNames": true,
+    "noImplicitAny" : true,
+    "noImplicitReturns": true,
+    "strictNullChecks": true,
 
-        "noEmit": true
-    }
+    "pretty": true
+  }
 }
 
