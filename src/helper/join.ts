@@ -1,10 +1,12 @@
 
+type Dictionary = {[f: string]: any}
+
 /**
  * Copy enum and non-enum properties from `aSource' to `aTarget'
  * @param aSource
  * @param aSubject - mutable (append-only)
  */
-function copyAll (aSource: Object, aSubject: Object): void {
+function copyAll (aSource: Dictionary, aSubject: Dictionary): void {
     const props = Object.getOwnPropertyNames(aSource)
     for (let f of props) {
         console.assert(f === "constructor" || ! (f in aSubject) ||
@@ -29,8 +31,8 @@ function copyAll (aSource: Object, aSubject: Object): void {
  $ @return Prototype chain of `aTarget' until to meet
  *  one prototype of `aBounds'. First item is the deeper prototype.
  */
-function prototypeChainOfUntil
-    (aTarget: Object, aBounds: Array<Object | null>): Array<Object> {
+function prototypeChainOfUntil (aTarget: Dictionary,
+    aBounds: Array<Dictionary | null>): Array<Dictionary> {
 
     const proto = Reflect.getPrototypeOf(aTarget)
     if (aBounds.indexOf(proto) === -1) {
@@ -40,14 +42,15 @@ function prototypeChainOfUntil
     }
 }
 
-interface ExtendFunc {
+interface JoinFunction {
     <A, B> (a: A, b: B): A & B
     <A, B, C> (a: A, b: B, c: C): A & B & C
     <A, B, C, D> (a: A, b: B, c: C, d: D): A & B & C & D
     <A, B, C, D, E> (a: A, b: B, c: C, d: D, e: E): A & B & C & D & E
 }
 
-declare let join: ExtendFunc
+declare let deepJoin: JoinFunction
+declare let join: JoinFunction
 
 /**
  * Each pair of objects (a, b) must be conflict-free
@@ -57,7 +60,7 @@ declare let join: ExtendFunc
  * @param aOthers
  * @return Concatenation of `aFirst' and `aOthers'.
  */
-join = function (aFirst, ...aOthers) {
+deepJoin = function (aFirst: Dictionary, ...aOthers: Dictionary[]) {
     const result = Object.create(aFirst) // mutable
 
     let includedProtos = prototypeChainOfUntil(aFirst, [null]).concat([null])
@@ -79,6 +82,31 @@ join = function (aFirst, ...aOthers) {
     return result
 }
 
+/**
+ * @param aSources
+ *      Conflict-free list of objects.
+ *      Each one must have `null' or `Object.prototype' as protoyupe.
+ *      Each one must have no property indexed by a Symbol.
+ * @return Concatenation of each objects in `aSources'.
+ */
+join = function (...aSources: Dictionary[]) {
+    const result = {}
 
-export {join}
+    for (let item of aSources) {
+        console.assert((! ("constructor" in item)) ||
+            item.constructor === Object,
+            "require: all argument have eitheir null or Object.prototype as prototype. It is not the case of the %s-th argument.",
+            aSources.indexOf(item))
+        console.assert(Object.getOwnPropertySymbols(item).length === 0,
+            "require: There is not a property indexed by a Symbol. This is not the case of the %s-th arg.",
+            aSources.indexOf(item))
+
+        copyAll(item, result)
+    }
+
+    return result
+}
+
+
+export {JoinFunction, join, deepJoin}
 
