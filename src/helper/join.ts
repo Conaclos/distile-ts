@@ -1,6 +1,4 @@
 
-type Dictionary = {[f: string]: any}
-
 interface JoinFunction {
     <A, B> (a: A, b: B): A & B
     <A, B, C> (a: A, b: B, c: C): A & B & C
@@ -14,7 +12,7 @@ interface JoinFunction {
  * @param aSource
  * @param aSubject - mutable (append-only)
  */
-function copyAll (aSource: Dictionary, aSubject: Dictionary): void {
+function copyAll (aSource: Properties, aSubject: Properties): void {
     const props = Object.getOwnPropertyNames(aSource)
     for (let f of props) {
         console.assert(f === "constructor" || ! (f in aSubject) ||
@@ -32,7 +30,7 @@ function copyAll (aSource: Dictionary, aSubject: Dictionary): void {
  *      Each one must have no property indexed by a Symbol.
  * @return Concatenation of each objects in `aSources'.
  */
-const join: JoinFunction = function (...aSources: Dictionary[]): Dictionary {
+const join: JoinFunction = function (...aSources: Properties[]): Properties {
     const result = {}
 
     for (let item of aSources) {
@@ -51,5 +49,5 @@ const join: JoinFunction = function (...aSources: Dictionary[]): Dictionary {
 }
 
 
-export {Dictionary, JoinFunction, copyAll, join}
+export {JoinFunction, copyAll, join}
 

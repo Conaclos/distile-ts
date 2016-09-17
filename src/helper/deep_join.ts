@@ -1,5 +1,5 @@
 
-import {Dictionary, JoinFunction, copyAll} from "./join.js"
+import {JoinFunction, copyAll} from "./join.js"
 
 
 /**
@@ -16,8 +16,8 @@ import {Dictionary, JoinFunction, copyAll} from "./join.js"
  $ @return Prototype chain of `aTarget' until to meet
  *  one prototype of `aBounds'. First item is the deeper prototype.
  */
-function prototypeChainOfUntil (aTarget: Dictionary,
-    aBounds: Array<Dictionary | null>): Array<Dictionary> {
+function prototypeChainOfUntil (aTarget: Properties,
+    aBounds: Array<Properties | null>): Array<Properties> {
 
     const proto = Reflect.getPrototypeOf(aTarget)
     if (aBounds.indexOf(proto) === -1) {
@@ -35,8 +35,8 @@ function prototypeChainOfUntil (aTarget: Dictionary,
  * @param aOthers
  * @return Concatenation of `aFirst' and `aOthers'.
  */
-const deepJoin: JoinFunction = function (aFirst: Dictionary,
-    ...aOthers: Dictionary[]) {
+const deepJoin: JoinFunction = function (aFirst: Properties,
+    ...aOthers: Properties[]) {
 
     const result = Object.create(aFirst) // mutable
 
