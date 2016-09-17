@@ -5,6 +5,13 @@
  * Extensions for `lib.d.ts'.
  */
 
+
+/**
+ * Any except null and undefined
+ */
+type NonNull = boolean | number | string | symbol | Object
+
+
 /**
  * Property dictionary.
  */

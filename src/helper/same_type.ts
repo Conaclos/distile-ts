@@ -1,5 +1,4 @@
 
-type NonNull = boolean | number | string | symbol | Object
 
 /**
  * @param a
@@ -13,8 +12,6 @@ function sameType <U extends NonNull, V extends NonNull> (a: U, b: V):
         (typeofA !== "object" || a.constructor === b.constructor)
 }
 
-export {
-    NonNull,
-    sameType
-}
+
+export {sameType}
 
