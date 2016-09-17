@@ -3,11 +3,11 @@
     "allowJs": false,
     "declaration": true,
     "lib": ["dom", "es6"],
-    "target": "ES5",
     "module": "commonjs",
     "noEmitHelpers": true,
+    "sourceMap": true,
+    "target": "ES5",
 
-    "rootDir": "./src",
     "outDir": "./dist",
 
     "forceConsistentCasingInFileNames": true,
