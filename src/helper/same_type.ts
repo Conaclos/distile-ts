@@ -3,7 +3,7 @@
 /**
  * @param a
  * @param b
- * @return HAve 'a' and 'b' the same type?
+ * @return Have 'a' and 'b' the same type?
  */
 function sameType <U extends NonNull, V extends NonNull> (a: U, b: V):
         b is U & V {
