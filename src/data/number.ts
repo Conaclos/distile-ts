@@ -1,7 +1,7 @@
 
 import {join} from "../helper/join.js"
-import {Bounded} from "../bounded.js"
-import {Order, Ordering, compareBasedOrder} from "../order.js"
+import {Bounded} from "../constraint/bounded.js"
+import {Order, Ordering, compareBasedOrder} from "../constraint/order.js"
 
 
 // Impl.

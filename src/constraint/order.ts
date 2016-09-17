@@ -1,5 +1,5 @@
 
-import {join} from "./helper/join.js"
+import {join} from "../helper/join.js"
 import {Comparator, equalBasedComparator} from "./comparator.js"
 
 /**

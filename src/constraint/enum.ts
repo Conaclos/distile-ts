@@ -1,5 +1,5 @@
 
-import {join} from "./helper/join.js"
+import {join} from "../helper/join.js"
 import {Order, intOrder} from "./order.js"
 import {Bounded} from "./bounded.js"
 

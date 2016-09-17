@@ -1,8 +1,9 @@
 
 import {join} from "../helper/join.js"
-import {Bounded} from "../bounded.js"
-import {Order} from "../order.js"
-import {Enum, intEnum} from "../enum.js"
+import {Bounded} from "../constraint/bounded.js"
+import {Order} from "../constraint/order.js"
+import {Enum, intEnum} from "../constraint/enum.js"
+
 
 
 // Constants

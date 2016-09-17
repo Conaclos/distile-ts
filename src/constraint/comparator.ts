@@ -1,5 +1,5 @@
 
-import {join} from './helper/join.js'
+import {join} from '../helper/join.js'
 
 
 interface Comparator <T> {

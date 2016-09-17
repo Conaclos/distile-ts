@@ -1,8 +1,13 @@
 
 import {join} from "../helper/join.js"
-import {Bounded} from "../bounded.js"
-import {Order, Ordering, compareBasedOrder, charOrder} from "../order.js"
-import {Enum} from "../enum.js"
+import {Bounded} from "../constraint/bounded.js"
+import {
+    Order,
+    Ordering,
+    compareBasedOrder,
+    charOrder
+} from "../constraint/order.js"
+import {Enum} from "../constraint/enum.js"
 
 
 // Type
