@@ -35,8 +35,8 @@ function prototypeChainOfUntil (aTarget: Properties,
  * @param aOthers
  * @return Concatenation of `aFirst' and `aOthers'.
  */
-const deepJoin: JoinFunction = function (aFirst: Properties,
-    ...aOthers: Properties[]) {
+const deepJoin: JoinFunction =
+    (aFirst: Properties, ...aOthers: Properties[]): Properties => {
 
     const result = Object.create(aFirst) // mutable
 

@@ -73,7 +73,7 @@ interface Order <T> extends Comparator<T> {
  */
 const compareBasedOrder = join({
 
-    equal <T> (this: Order<T>, a: T, b: T) {
+    equal <T> (this: Order<T>, a: T, b: T): boolean {
         return this.compare(a, b) === Ordering.Equal
     },
 

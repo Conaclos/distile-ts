@@ -30,7 +30,7 @@ function copyAll (aSource: Properties, aSubject: Properties): void {
  *      Each one must have no property indexed by a Symbol.
  * @return Concatenation of each objects in `aSources'.
  */
-const join: JoinFunction = function (...aSources: Properties[]): Properties {
+const join: JoinFunction = (...aSources: Properties[]): Properties => {
     const result = {}
 
     for (let item of aSources) {

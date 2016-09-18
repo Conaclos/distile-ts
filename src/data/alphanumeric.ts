@@ -57,7 +57,6 @@ function isAlphaLowerChar (a: string): a is AlphaLowerChar {
 function isAlphanumericUpperChar (a: string): a is AlphanumericUpperChar {
     console.assert(a.length === 1)
 
-    const code = a.charCodeAt(0)
     return isNumericChar(a) || isAlphaUpperChar(a)
 }
 

@@ -26,8 +26,8 @@ const safeIntImpl: Bounded<number> & Order<number> = join({
                 return Ordering.Greater
             }
         } else {
-            if(Math.sign(a + -1*signA*Number.EPSILON) !== signA &&
-                Math.sign(b + -1*signB*Number.EPSILON) !== signB) {
+            if (Math.sign(a - signA * Number.EPSILON) !== signA &&
+                Math.sign(b - signB * Number.EPSILON) !== signB) {
 
                 return Ordering.Equal
             } else if (signA === -1 || signB === 1) {

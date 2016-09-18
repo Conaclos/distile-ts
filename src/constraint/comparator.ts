@@ -34,7 +34,7 @@ const equalBasedComparator = {
 
 const strictComparator: Comparator<any> = join({
 
-    equal (a: any, b: any) {
+    equal (a: any, b: any): boolean {
         return a === b
     }
 
