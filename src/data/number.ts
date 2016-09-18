@@ -11,7 +11,7 @@ const numberBounds: Bounded<number> = {
     top: Number.MAX_VALUE
 }
 
-const safeIntImpl: Bounded<number> & Order<number> = join({
+const numberImpl: Bounded<number> & Order<number> = join({
 
     compare (a: number, b: number): Ordering {
         const signA = Math.sign(a)
@@ -42,6 +42,6 @@ const safeIntImpl: Bounded<number> & Order<number> = join({
 
 export {
     numberBounds,
-    safeIntImpl
+    numberImpl
 }
 
