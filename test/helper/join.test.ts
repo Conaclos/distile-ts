@@ -1,7 +1,7 @@
 
 import test from "ava"
 import {AssertContext} from "ava"
-import {join} from "../../src/helper/join.js"
+import {join} from "../../src"
 
 test("join-base", (t: AssertContext) => {
     const a = {
