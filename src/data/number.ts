@@ -1,5 +1,4 @@
 
-import {join} from "../helper/join.js"
 import {Bounded} from "../constraint/bounded.js"
 import {Order, Ordering, compareBasedOrder} from "../constraint/order.js"
 
@@ -11,7 +10,7 @@ const numberBounds: Bounded<number> = {
     top: Number.MAX_VALUE
 }
 
-const numberImpl: Bounded<number> & Order<number> = join({
+const numberImpl: Bounded<number> & Order<number> = Object.assign({
 
     compare (a: number, b: number): Ordering {
         const signA = Math.sign(a)

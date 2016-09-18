@@ -1,7 +1,4 @@
 
-import {join} from '../helper/join.js'
-
-
 /**
  * Define equality on types.
  */
@@ -37,7 +34,7 @@ const equalBasedComparator = {
 /**
  * Impl. of strict comparison
  */
-const strictComparator: Comparator<any> = join({
+const strictComparator: Comparator<any> = Object.assign({
 
     equal (a: any, b: any): boolean {
         return a === b

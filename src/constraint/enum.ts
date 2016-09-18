@@ -1,5 +1,4 @@
 
-import {join} from "../helper/join.js"
 import {Order, intOrder} from "./order.js"
 import {Bounded} from "./bounded.js"
 
@@ -27,7 +26,7 @@ interface Enum <T> {
 /**
  * Impl. for any int types.
  */
-const intEnum: Enum<number> & Order<number> = join({
+const intEnum: Enum<number> & Order<number> = Object.assign({
 
     predecessor (this: Bounded<number>, n: number): number {
         console.assert(n > this.bottom,
@@ -46,7 +45,7 @@ const intEnum: Enum<number> & Order<number> = join({
 /**
  * Impl. of an infinite enum for any int types (bounded types).
  */
-const intCyclicEnum: Enum<number> & Order<number> = join({
+const intCyclicEnum: Enum<number> & Order<number> = Object.assign({
 
     predecessor (this: Bounded<number>, n: number): number {
         if (n === this.bottom) {

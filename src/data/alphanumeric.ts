@@ -1,5 +1,4 @@
 
-import {join} from "../helper/join.js"
 import {Bounded} from "../constraint/bounded.js"
 import {
     Order,
@@ -74,7 +73,7 @@ function isAlphanumericChar (a: string): a is AlphanumericChar {
 // Impl.
 
 const alphanumericCharImpl: Bounded<AlphanumericChar> &
-    Order<AlphanumericChar> & Enum<AlphanumericChar> = join({
+    Order<AlphanumericChar> & Enum<AlphanumericChar> = Object.assign({
 
     bottom: <AlphanumericChar> "0",
     top: <AlphanumericChar> "z",

@@ -1,5 +1,4 @@
 
-import {join} from "../helper/join.js"
 import {Bounded} from "../constraint/bounded.js"
 import {Order} from "../constraint/order.js"
 import {Enum, intEnum} from "../constraint/enum.js"
@@ -33,7 +32,7 @@ const uint32Bounds: Bounded<number> = {
 }
 
 const uint32Impl: Bounded<number> & Order<number> & Enum<number> =
-    join(intEnum, uint32Bounds)
+    Object.assign({}, intEnum, uint32Bounds)
 
 
 export {

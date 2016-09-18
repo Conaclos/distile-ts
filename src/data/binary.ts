@@ -1,5 +1,4 @@
 
-import {join} from "../helper/join.js"
 import {Bounded} from "../constraint/bounded.js"
 import {Order, Ordering, compareBasedOrder} from "../constraint/order.js"
 import {Enum} from "../constraint/enum.js"
@@ -13,7 +12,9 @@ const BINARY_TOP = true
 
 // Impl.
 
-const binaryImpl: Bounded<boolean> & Order<boolean> & Enum<boolean> = join({
+const binaryImpl: Bounded<boolean> & Order<boolean> & Enum<boolean> =
+    Object.assign({
+
     bottom: BINARY_BOTTOM,
     top: BINARY_TOP,
 

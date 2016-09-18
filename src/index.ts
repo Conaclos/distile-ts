@@ -15,7 +15,3 @@ export * from "./data/uint16.js"
 export * from "./data/uint32.js"
 export * from "./data/safe_int.js"
 
-export * from "./helper/deep_join.js"
-export * from "./helper/join.js"
-export * from "./helper/same_type.js"
-

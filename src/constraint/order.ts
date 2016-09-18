@@ -1,5 +1,4 @@
 
-import {join} from "../helper/join.js"
 import {Comparator, equalBasedComparator} from "./comparator.js"
 
 
@@ -72,7 +71,7 @@ interface Order <T> extends Comparator<T> {
 /**
  * Partial impl. based on `compare'.
  */
-const compareBasedOrder = join({
+const compareBasedOrder = Object.assign({
 
     equal <T> (this: Order<T>, a: T, b: T): boolean {
         return this.compare(a, b) === Ordering.Equal
@@ -115,7 +114,8 @@ const compareBasedOrder = join({
 /**
  * Impl. for any int types.
  */
-const intOrder: Order<number> = join({
+const intOrder: Order<number> = Object.assign({
+
     compare (a: number, b: number): Ordering {
         if (a < b) {
             return Ordering.Less
@@ -125,18 +125,21 @@ const intOrder: Order<number> = join({
             return Ordering.Greater
         }
     }
+
 }, compareBasedOrder)
 
 /**
  * Impl. for any characters.
  */
-const charOrder: Order<string> = join({
+const charOrder: Order<string> = Object.assign({
+
     compare (a: string, b: string): Ordering {
         console.assert(a.length === 1)
         console.assert(b.length === 1)
 
         return intOrder.compare(a.charCodeAt(0), b.charCodeAt(0))
     }
+
 }, compareBasedOrder)
 
 
