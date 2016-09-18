@@ -5,7 +5,7 @@ import {Bounded} from "./bounded.js"
 
 
 /**
- *
+ * Define operation on enumerable types.
  */
 interface Enum <T> {
 
@@ -24,24 +24,28 @@ interface Enum <T> {
 }
 
 
-// Part impl.
-
 /**
- * Signed and unsigned integers
+ * Impl. for any int types.
  */
 const intEnum: Enum<number> & Order<number> = join({
 
     predecessor (this: Bounded<number>, n: number): number {
+        console.assert(n > this.bottom,
+            "require: `n' is greater than `bottom'. n = ", n)
         return n - 1
     },
 
     successor (this: Bounded<number>, n: number): number {
+        console.assert(n > this.top,
+            "require: `n' is lower than `top'. n = ", n)
         return n + 1
     }
 
 }, intOrder)
 
-
+/**
+ * Impl. of an infinite enum for any int types (bounded types).
+ */
 const intCyclicEnum: Enum<number> & Order<number> = join({
 
     predecessor (this: Bounded<number>, n: number): number {

@@ -2,6 +2,7 @@
 import {join} from "../helper/join.js"
 import {Comparator, equalBasedComparator} from "./comparator.js"
 
+
 /**
  * Possible relation between two elements in a totally ordered set.
  */
@@ -12,7 +13,7 @@ const enum Ordering {
 }
 
 /**
- * Total order
+ * Define comparison operations on totally ordered types.
  */
 interface Order <T> extends Comparator<T> {
 
@@ -69,7 +70,7 @@ interface Order <T> extends Comparator<T> {
 
 
 /**
- * Total order
+ * Partial impl. based on `compare'.
  */
 const compareBasedOrder = join({
 
@@ -111,9 +112,9 @@ const compareBasedOrder = join({
 
 }, equalBasedComparator)
 
-
-// Signed and unsigned integers
-
+/**
+ * Impl. for any int types.
+ */
 const intOrder: Order<number> = join({
     compare (a: number, b: number): Ordering {
         if (a < b) {
@@ -126,9 +127,9 @@ const intOrder: Order<number> = join({
     }
 }, compareBasedOrder)
 
-
-// Char
-
+/**
+ * Impl. for any characters.
+ */
 const charOrder: Order<string> = join({
     compare (a: string, b: string): Ordering {
         console.assert(a.length === 1)

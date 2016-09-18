@@ -5,7 +5,9 @@
  * ordered may also be below-bounded.
  */
 interface BoundedBelow <T> {
+
     readonly bottom: T
+
 }
 
 /**
@@ -14,7 +16,9 @@ interface BoundedBelow <T> {
  * ordered may also be above-bounded.
  */
 interface BoundedAbove <T> {
+
     readonly top: T
+
 }
 
 /**

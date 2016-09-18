@@ -2,6 +2,9 @@
 import {join} from '../helper/join.js'
 
 
+/**
+ * Define equality on types.
+ */
 interface Comparator <T> {
 
     /**
@@ -15,8 +18,10 @@ interface Comparator <T> {
 
 }
 
-// Partial impl.
 
+/**
+ * Partial impl. based on `equal'
+ */
 const equalBasedComparator = {
 
     nullableEqual <T> (this: Comparator<T>, a: T | null, b: T | null): boolean {
@@ -29,9 +34,9 @@ const equalBasedComparator = {
 
 }
 
-
-// Full impl.
-
+/**
+ * Impl. of strict comparison
+ */
 const strictComparator: Comparator<any> = join({
 
     equal (a: any, b: any): boolean {
