@@ -56,14 +56,14 @@ interface Order <T> extends Comparator<T> {
      * @param b
      * @return 'a' if 'a' is less than 'b' else 'b'
      */
-    min (a: T, b: T): T
+    min <U extends T, V extends T> (a: U, b: V): U | V
 
     /**
      * @param a
      * @param b
      * @return 'a' if 'a' is greater than 'b' else 'b'
      */
-    max (a: T, b: T): T
+    max <U extends T, V extends T> (a: U, b: V): U | V
 
 }
 
@@ -93,7 +93,7 @@ const compareBasedOrder = join({
         return this.compare(a, b) !== Ordering.Less
     },
 
-    min <T> (this: Order<T>, a: T, b: T): T {
+    min <T, U extends T, V extends T> (this: Order<T>, a: U, b: V): U | V {
         if (this.less(a, b)) {
             return a
         } else {
@@ -101,7 +101,7 @@ const compareBasedOrder = join({
         }
     },
 
-    max <T> (this: Order<T>, a: T, b: T): T {
+    max <T, U extends T, V extends T> (this: Order<T>, a: U, b: V): U | V {
         if (this.less(a, b)) {
             return b
         } else {
