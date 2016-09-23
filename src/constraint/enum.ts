@@ -30,13 +30,15 @@ const intEnum: Enum<number> & Order<number> = Object.assign({
 
     predecessor (this: Bounded<number>, n: number): number {
         console.assert(n > this.bottom,
-            "require: `n' is greater than `bottom'. n = ", n)
+            "require: `n' is greater than `bottom'. n = ", n,
+            "bottom = ", this.bottom)
         return n - 1
     },
 
     successor (this: Bounded<number>, n: number): number {
-        console.assert(n > this.top,
-            "require: `n' is lower than `top'. n = ", n)
+        console.assert(n < this.top,
+            "require: `n' is lower than `top'. n = ", n,
+            "top = ", this.top)
         return n + 1
     }
 
