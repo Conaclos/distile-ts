@@ -1,13 +1,15 @@
 
 import test from "ava"
 import {AssertContext} from "ava"
+import {comparatorInv} from "../../test-macro"
 import {strictComparator} from "../../src"
 
-test("nullable-equal", (t: AssertContext) => {
-    t.true(strictComparator.nullableEqual(null, null))
-    t.false(strictComparator.nullableEqual(null, 1))
-    t.false(strictComparator.nullableEqual(1, null))
-})
+// Temp fix. Ava doesn't export the signature of `test' that enables macro.
+const testM = test as
+    (l: string, m: (t: AssertContext, ...a: any[]) => void, ...a: any[]) => void
+
+
+testM("strict-equal-inv", comparatorInv, strictComparator, 1)
 
 test("strict-equal", (t: AssertContext) => {
     const ref = {}

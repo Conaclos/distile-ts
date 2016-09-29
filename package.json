@@ -25,7 +25,7 @@
   },
   "ava": {
     "files": [
-      "dist/test"
+      "dist/test/**/*.test.js"
     ],
     "source": [
       "test"
