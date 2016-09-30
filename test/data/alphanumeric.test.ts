@@ -5,7 +5,12 @@ import {
     numericCharM,
     alphaLowerCharM,
     alphaUpperCharM,
-    boundedInv
+    boundedAboveInv,
+    boundedBelowInv,
+    boundedInv,
+    comparatorInv,
+    enumInv,
+    orderInv
 } from "../../test-macro"
 import {
     isNumericChar,
@@ -22,6 +27,22 @@ import {
 const testM = test as
     (l: string, m: (t: AssertContext, ...a: any[]) => void, ...a: any[]) => void
 
+
+testM("inv-boundedAbove", boundedAboveInv, alphanumericCharImpl, "a")
+testM("inv-boundedBelow", boundedBelowInv, alphanumericCharImpl, "a")
+testM("inv-bounded", boundedInv, alphanumericCharImpl)
+
+testM("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
+    alphanumericCharImpl.bottom)
+testM("inv-comparatorInv", comparatorInv, alphanumericCharImpl, "a")
+testM("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
+    alphanumericCharImpl.top)
+
+testM("inv-enum", enumInv, alphanumericCharImpl, "a")
+testM("inv-enum", enumInv, alphanumericCharImpl, "9")
+
+testM("inv-order", orderInv, alphanumericCharImpl,
+    alphanumericCharImpl.top, alphanumericCharImpl.bottom)
 
 testM("isNumericChar", numericCharM, isNumericChar, true)
 testM("isNumericChar", alphaLowerCharM, isNumericChar, false)
@@ -46,8 +67,6 @@ testM("isAlphanumLowerChar", alphaUpperCharM, isAlphanumericLowerChar, false)
 testM("sAlphanumUpperChar", numericCharM, isAlphanumericUpperChar, true)
 testM("isAlphanumUpperChar", alphaLowerCharM, isAlphanumericUpperChar, false)
 testM("isAlphanumUpperChar", alphaUpperCharM, isAlphanumericUpperChar, true)
-
-testM("alphanumericChar-inv", boundedInv, alphanumericCharImpl)
 
 test("alphanumericCharImpl", (t: AssertContext) => {
     // TODO
