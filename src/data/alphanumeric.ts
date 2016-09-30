@@ -93,7 +93,7 @@ const alphanumericCharImpl: Bounded<AlphanumericChar> &
         } else if (code === CHAR_CODE_UPPER_A) {
             return "9"
         } else {
-            return <AlphanumericChar> String.fromCharCode(code - 1)
+            return String.fromCharCode(code - 1) as AlphanumericChar
         }
     },
 
@@ -108,7 +108,7 @@ const alphanumericCharImpl: Bounded<AlphanumericChar> &
         } else if (code === CHAR_CODE_UPPER_Z) {
             return "a"
         } else {
-            return <AlphanumericChar> String.fromCharCode(code + 1)
+            return String.fromCharCode(code + 1) as AlphanumericChar
         }
     }
 
