@@ -6,7 +6,7 @@ import {Order, Ordering, compareBasedOrder} from "../constraint/order.js"
 // Impl.
 
 const numberBounds: Bounded<number> = {
-    bottom: Number.MIN_VALUE,
+    bottom: - Number.MIN_VALUE,
     top: Number.MAX_VALUE
 }
 
