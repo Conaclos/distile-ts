@@ -7,6 +7,7 @@ import {
     boundedInv,
     comparatorInv,
     enumInv,
+    isIntM,
     orderInv
 } from "../../test-macro"
 import {isSafeInt, safeIntImpl} from "../../src"
@@ -30,12 +31,5 @@ testM("inv-enum", enumInv, safeIntImpl, 1)
 testM("inv-order", orderInv, safeIntImpl,
     safeIntImpl.top, safeIntImpl.bottom)
 
-test("isSafeInt", (t: AssertContext) => {
-    t.true(isSafeInt(safeIntImpl.bottom))
-    t.true(isSafeInt(safeIntImpl.top))
-
-    t.true(isSafeInt(-1))
-    t.true(isSafeInt(0))
-    t.true(isSafeInt(1))
-})
+testM("issafeInt", isIntM, isSafeInt, safeIntImpl)
 

@@ -7,6 +7,7 @@ import {
     boundedInv,
     comparatorInv,
     enumInv,
+    isIntM,
     orderInv
 } from "../../test-macro"
 import {isUint16, uint16Impl} from "../../src"
@@ -28,11 +29,5 @@ testM("inv-enum", enumInv, uint16Impl, 1)
 testM("inv-order", orderInv, uint16Impl,
     uint16Impl.top, uint16Impl.bottom)
 
-test("isUint16", (t: AssertContext) => {
-    t.true(isUint16(uint16Impl.bottom))
-    t.true(isUint16(uint16Impl.top))
-
-    t.true(isUint16(0))
-    t.true(isUint16(1))
-})
+testM("isUint16", isIntM, isUint16, uint16Impl)
 

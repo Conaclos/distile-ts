@@ -7,6 +7,7 @@ import {
     boundedInv,
     comparatorInv,
     enumInv,
+    isIntM,
     orderInv
 } from "../../test-macro"
 import {isInt8, int8Impl} from "../../src"
@@ -30,12 +31,5 @@ testM("inv-enum", enumInv, int8Impl, 1)
 testM("inv-order", orderInv, int8Impl,
     int8Impl.top, int8Impl.bottom)
 
-test("isInt8", (t: AssertContext) => {
-    t.true(isInt8(int8Impl.bottom))
-    t.true(isInt8(int8Impl.top))
-
-    t.true(isInt8(-1))
-    t.true(isInt8(0))
-    t.true(isInt8(1))
-})
+testM("isInt8", isIntM, isInt8, int8Impl)
 

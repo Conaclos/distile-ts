@@ -7,6 +7,7 @@ import {
     boundedInv,
     comparatorInv,
     enumInv,
+    isIntM,
     orderInv
 } from "../../test-macro"
 import {isUint32, uint32Impl} from "../../src"
@@ -28,11 +29,5 @@ testM("inv-enum", enumInv, uint32Impl, 1)
 testM("inv-order", orderInv, uint32Impl,
     uint32Impl.top, uint32Impl.bottom)
 
-test("isUint32", (t: AssertContext) => {
-    t.true(isUint32(uint32Impl.bottom))
-    t.true(isUint32(uint32Impl.top))
-
-    t.true(isUint32(0))
-    t.true(isUint32(1))
-})
+testM("isUint32", isIntM, isUint32, uint32Impl)
 
