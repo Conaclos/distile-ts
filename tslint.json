@@ -31,7 +31,6 @@
     "curly": true,
     "no-arg": true,
     "no-conditional-assignment": true,
-    "no-duplicate-key": true,
     "no-duplicate-variable": true,
     "no-eval": true,
     "no-switch-case-fall-through": true,

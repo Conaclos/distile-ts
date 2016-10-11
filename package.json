@@ -15,6 +15,7 @@
   ],
   "typings": "dist/src/",
   "scripts": {
+    "ci": "create-index ./src",
     "build": "tsc",
     "check": "tsc --noEmit",
     "clean": "rm -r dist",
@@ -39,8 +40,8 @@
     "nyc": "^8.3.0",
     "standard-version": "^2.4.0",
     "temp-write": "^2.1.0",
-    "tslint": "^3.15.1",
-    "typescript": "^2.1.0-dev.20160918",
+    "tslint": "^3.15.0",
+    "typescript": "^2.0.0",
     "validate-commit-msg": "^2.8.0"
   }
 }
