@@ -36,12 +36,13 @@
     "node": ">=5.11.0"
   },
   "devDependencies": {
-    "ava": "^0.16.0",
-    "nyc": "^8.3.0",
-    "standard-version": "^2.4.0",
+    "ava": "^0.17.0",
+    "nyc": "^10.0.0",
+    "standard-version": "^4.0.0",
     "temp-write": "^2.1.0",
-    "tslint": "^3.15.0",
-    "typescript": "^2.0.0",
-    "validate-commit-msg": "^2.8.0"
-  }
+    "tslint": "^4.2.0",
+    "typescript": "^2.1.4",
+    "validate-commit-msg": "^2.8.2"
+  },
+  "dependencies": {}
 }
