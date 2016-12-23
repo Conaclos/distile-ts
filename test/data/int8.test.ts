@@ -12,24 +12,20 @@ import {
 } from "../../test-macro"
 import {isInt8, int8Impl} from "../../src"
 
-// Temp fix. Ava doesn't export the signature of `test' that enables macro.
-const testM = test as
-    (l: string, m: (t: AssertContext, ...a: any[]) => void, ...a: any[]) => void
 
+test("inv-boundedAbove", boundedAboveInv, int8Impl, 0)
+test("inv-boundedBelow", boundedBelowInv, int8Impl, 0)
+test("inv-bounded", boundedInv, int8Impl)
 
-testM("inv-boundedAbove", boundedAboveInv, int8Impl, 0)
-testM("inv-boundedBelow", boundedBelowInv, int8Impl, 0)
-testM("inv-bounded", boundedInv, int8Impl)
+test("inv-comparator", comparatorInv, int8Impl, int8Impl.top)
+test("inv-comparator", comparatorInv, int8Impl, int8Impl.bottom)
 
-testM("inv-comparator", comparatorInv, int8Impl, int8Impl.top)
-testM("inv-comparator", comparatorInv, int8Impl, int8Impl.bottom)
+test("inv-enum", enumInv, int8Impl, -1)
+test("inv-enum", enumInv, int8Impl, 0)
+test("inv-enum", enumInv, int8Impl, 1)
 
-testM("inv-enum", enumInv, int8Impl, -1)
-testM("inv-enum", enumInv, int8Impl, 0)
-testM("inv-enum", enumInv, int8Impl, 1)
-
-testM("inv-order", orderInv, int8Impl,
+test("inv-order", orderInv, int8Impl,
     int8Impl.top, int8Impl.bottom)
 
-testM("isInt8", isIntM, isInt8, int8Impl)
+test("isInt8", isIntM, isInt8, int8Impl)
 

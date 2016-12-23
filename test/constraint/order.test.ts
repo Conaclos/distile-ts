@@ -10,16 +10,12 @@ import {
     compareBasedOrder
 } from "../../src"
 
-// Temp fix. Ava doesn't export the signature of `test' that enables macro.
-const testM = test as
-    (l: string, m: (t: AssertContext, ...a: any[]) => void, ...a: any[]) => void
-
 
 const MIN = Number.MIN_SAFE_INTEGER
 const MAX = Number.MAX_SAFE_INTEGER
 
-testM("intOrder-inv-diff-values", orderInv, intOrder, MIN, MAX)
-testM("intOrder-inv-equal-values", orderInv, intOrder, 0, 0)
+test("intOrder-inv-diff-values", orderInv, intOrder, MIN, MAX)
+test("intOrder-inv-equal-values", orderInv, intOrder, 0, 0)
 
 test("intOrder-compare-equal", (t: AssertContext) => {
     t.true(intOrder.less(MIN, MAX))
@@ -33,8 +29,8 @@ test("intOrder-compare-equal", (t: AssertContext) => {
     t.true(intOrder.equal(MIN, MIN))
 })
 
-testM("charOrder-inv-diff-values", orderInv, charOrder, "a", "0")
-testM("charOrder-inv-equal-values", orderInv, charOrder, "a", "a")
+test("charOrder-inv-diff-values", orderInv, charOrder, "a", "0")
+test("charOrder-inv-equal-values", orderInv, charOrder, "a", "a")
 
 test("charOrder-compare-equal", (t: AssertContext) => {
     t.true(charOrder.less("0", "1"))
@@ -61,8 +57,8 @@ const impl: Order<Object> = Object.assign({
     }
 }, compareBasedOrder)
 
-testM("compareBased-inv-diff-values", orderInv, impl, top, bottom)
-testM("compareBased-inv-equal-values", orderInv, impl, top, top)
+test("compareBased-inv-diff-values", orderInv, impl, top, bottom)
+test("compareBased-inv-equal-values", orderInv, impl, top, top)
 
 test("compareBasedOrder", (t: AssertContext) => {
 

@@ -10,24 +10,20 @@ import {
 } from "../../test-macro"
 import {numberImpl} from "../../src"
 
-// Temp fix. Ava doesn't export the signature of `test' that enables macro.
-const testM = test as
-    (l: string, m: (t: AssertContext, ...a: any[]) => void, ...a: any[]) => void
 
+test("inv-boundedAbove", boundedAboveInv, numberImpl, 0)
+test("inv-boundedBelow", boundedBelowInv, numberImpl, 0)
+test("inv-bounded", boundedInv, numberImpl)
 
-testM("inv-boundedAbove", boundedAboveInv, numberImpl, 0)
-testM("inv-boundedBelow", boundedBelowInv, numberImpl, 0)
-testM("inv-bounded", boundedInv, numberImpl)
+test("inv-comparator", comparatorInv, numberImpl, numberImpl.top)
+test("inv-comparator", comparatorInv, numberImpl, numberImpl.bottom)
 
-testM("inv-comparator", comparatorInv, numberImpl, numberImpl.top)
-testM("inv-comparator", comparatorInv, numberImpl, numberImpl.bottom)
-
-testM("inv-order", orderInv, numberImpl, numberImpl.top, numberImpl.bottom)
-testM("inv-order", orderInv, numberImpl, 0, 0)
-testM("inv-order", orderInv, numberImpl, 1, 2)
-testM("inv-order", orderInv, numberImpl, -1, -2)
-testM("inv-order", orderInv, numberImpl, 0, Number.EPSILON / 2)
-testM("inv-order", orderInv, numberImpl, - Number.EPSILON / 2, 0)
-testM("inv-order", orderInv, numberImpl,
+test("inv-order", orderInv, numberImpl, numberImpl.top, numberImpl.bottom)
+test("inv-order", orderInv, numberImpl, 0, 0)
+test("inv-order", orderInv, numberImpl, 1, 2)
+test("inv-order", orderInv, numberImpl, -1, -2)
+test("inv-order", orderInv, numberImpl, 0, Number.EPSILON / 2)
+test("inv-order", orderInv, numberImpl, - Number.EPSILON / 2, 0)
+test("inv-order", orderInv, numberImpl,
     - Number.EPSILON / 2, Number.EPSILON / 2)
 

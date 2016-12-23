@@ -8,10 +8,6 @@ import {
 } from "../../test-macro"
 import {intEnum, intCyclicEnum, Bounded} from "../../src"
 
-// Temp fix. Ava doesn't export the signature of `test' that enables macro.
-const testM = test as
-    (l: string, m: (t: AssertContext, ...a: any[]) => void, ...a: any[]) => void
-
 
 const MIN = Number.MIN_SAFE_INTEGER
 const MAX = Number.MAX_SAFE_INTEGER
@@ -27,8 +23,8 @@ const intEnumImpl = Object.assign({}, safeIntBounds, intEnum)
 const cyclicIntEnumImpl = Object.assign({}, safeIntBounds, intCyclicEnum)
 
 
-testM("intEnum-inv", enumInv, intEnumImpl, 0)
-testM("intEnum-inv", unboundedEnumInv, intEnumImpl, 0)
+test("intEnum-inv", enumInv, intEnumImpl, 0)
+test("intEnum-inv", unboundedEnumInv, intEnumImpl, 0)
 
 test("intEnum-predecessor", (t: AssertContext) => {
     t.is(intEnumImpl.predecessor(MAX), MAX - 1)
@@ -48,9 +44,9 @@ test("intEnum-successor", (t: AssertContext) => {
     t.is(intEnumImpl.successor(MIN), MIN + 1)
 })
 
-testM("intEnum-inv", enumInv, cyclicIntEnumImpl, 0)
-testM("intEnum-inv", unboundedEnumInv, cyclicIntEnumImpl, 0)
-testM("intCyclicEnum-inv", cyclicEnumInv, cyclicIntEnumImpl)
+test("intEnum-inv", enumInv, cyclicIntEnumImpl, 0)
+test("intEnum-inv", unboundedEnumInv, cyclicIntEnumImpl, 0)
+test("intCyclicEnum-inv", cyclicEnumInv, cyclicIntEnumImpl)
 
 test("intCyclicEnum-predecessor", (t: AssertContext) => {
     t.is(cyclicIntEnumImpl.predecessor(MAX), MAX - 1)

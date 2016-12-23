@@ -23,50 +23,45 @@ import {
 } from "../../src"
 
 
-// Temp fix. Ava doesn't export the signature of `test' that enables macro.
-const testM = test as
-    (l: string, m: (t: AssertContext, ...a: any[]) => void, ...a: any[]) => void
+test("inv-boundedAbove", boundedAboveInv, alphanumericCharImpl, "a")
+test("inv-boundedBelow", boundedBelowInv, alphanumericCharImpl, "a")
+test("inv-bounded", boundedInv, alphanumericCharImpl)
 
-
-testM("inv-boundedAbove", boundedAboveInv, alphanumericCharImpl, "a")
-testM("inv-boundedBelow", boundedBelowInv, alphanumericCharImpl, "a")
-testM("inv-bounded", boundedInv, alphanumericCharImpl)
-
-testM("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
+test("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
     alphanumericCharImpl.bottom)
-testM("inv-comparatorInv", comparatorInv, alphanumericCharImpl, "a")
-testM("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
+test("inv-comparatorInv", comparatorInv, alphanumericCharImpl, "a")
+test("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
     alphanumericCharImpl.top)
 
-testM("inv-enum", enumInv, alphanumericCharImpl, "a")
-testM("inv-enum", enumInv, alphanumericCharImpl, "9")
+test("inv-enum", enumInv, alphanumericCharImpl, "a")
+test("inv-enum", enumInv, alphanumericCharImpl, "9")
 
-testM("inv-order", orderInv, alphanumericCharImpl,
+test("inv-order", orderInv, alphanumericCharImpl,
     alphanumericCharImpl.top, alphanumericCharImpl.bottom)
 
-testM("isNumericChar", numericCharM, isNumericChar, true)
-testM("isNumericChar", alphaLowerCharM, isNumericChar, false)
-testM("isNumericChar", alphaUpperCharM, isNumericChar, false)
+test("isNumericChar", numericCharM, isNumericChar, true)
+test("isNumericChar", alphaLowerCharM, isNumericChar, false)
+test("isNumericChar", alphaUpperCharM, isNumericChar, false)
 
-testM("sAlphaLowerChar", numericCharM, isAlphaLowerChar, false)
-testM("isAlphaLowerChar", alphaLowerCharM, isAlphaLowerChar, true)
-testM("isAlphaLowerChar", alphaUpperCharM, isAlphaLowerChar, false)
+test("sAlphaLowerChar", numericCharM, isAlphaLowerChar, false)
+test("isAlphaLowerChar", alphaLowerCharM, isAlphaLowerChar, true)
+test("isAlphaLowerChar", alphaUpperCharM, isAlphaLowerChar, false)
 
-testM("sAlphaUpperChar", numericCharM, isAlphaUpperChar, false)
-testM("isAlphaUpperChar", alphaLowerCharM, isAlphaUpperChar, false)
-testM("isAlphaUpperChar", alphaUpperCharM, isAlphaUpperChar, true)
+test("sAlphaUpperChar", numericCharM, isAlphaUpperChar, false)
+test("isAlphaUpperChar", alphaLowerCharM, isAlphaUpperChar, false)
+test("isAlphaUpperChar", alphaUpperCharM, isAlphaUpperChar, true)
 
-testM("isAlphanumChar", numericCharM, isAlphanumericChar, true)
-testM("isAlphanumChar", alphaLowerCharM, isAlphanumericChar, true)
-testM("isAlphanumChar", alphaUpperCharM, isAlphanumericChar, true)
+test("isAlphanumChar", numericCharM, isAlphanumericChar, true)
+test("isAlphanumChar", alphaLowerCharM, isAlphanumericChar, true)
+test("isAlphanumChar", alphaUpperCharM, isAlphanumericChar, true)
 
-testM("sAlphanumeowerChar", numericCharM, isAlphanumericLowerChar, true)
-testM("isAlphanumLowerChar", alphaLowerCharM, isAlphanumericLowerChar, true)
-testM("isAlphanumLowerChar", alphaUpperCharM, isAlphanumericLowerChar, false)
+test("sAlphanumeowerChar", numericCharM, isAlphanumericLowerChar, true)
+test("isAlphanumLowerChar", alphaLowerCharM, isAlphanumericLowerChar, true)
+test("isAlphanumLowerChar", alphaUpperCharM, isAlphanumericLowerChar, false)
 
-testM("sAlphanumUpperChar", numericCharM, isAlphanumericUpperChar, true)
-testM("isAlphanumUpperChar", alphaLowerCharM, isAlphanumericUpperChar, false)
-testM("isAlphanumUpperChar", alphaUpperCharM, isAlphanumericUpperChar, true)
+test("sAlphanumUpperChar", numericCharM, isAlphanumericUpperChar, true)
+test("isAlphanumUpperChar", alphaLowerCharM, isAlphanumericUpperChar, false)
+test("isAlphanumUpperChar", alphaUpperCharM, isAlphanumericUpperChar, true)
 
 test("alphanumericCharImpl", (t: AssertContext) => {
     // TODO
