@@ -1,0 +1,9 @@
+**/*.js.map
+*.log
+src
+test
+tsconfig.json
+.editorconfig
+.gitattributes
+.travis.yml
+tslint.json
