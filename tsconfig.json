@@ -5,12 +5,15 @@
     "lib": ["dom", "es6"],
     "module": "commonjs",
     "noEmitHelpers": true,
+    "removeComments": true,
+    "skipDefaultLibCheck": true,
     "sourceMap": true,
-    "target": "ES5",
+    "target": "ES6",
 
     "outDir": "./dist",
 
     "forceConsistentCasingInFileNames": true,
+    "noFallthroughCasesInSwitch": true,
     "noImplicitAny" : true,
     "noImplicitReturns": true,
     "noImplicitThis": true,
