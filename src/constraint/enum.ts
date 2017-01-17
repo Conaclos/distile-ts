@@ -26,7 +26,9 @@ interface Enum <T> {
 /**
  * Impl. for any int types.
  */
-const intEnum: Enum<number> & Order<number> = Object.assign({
+const intEnum: Enum<number> & Order<number> = {
+
+    ...intOrder,
 
     predecessor (this: Bounded<number>, n: number): number {
         console.assert(n > this.bottom,
@@ -42,12 +44,14 @@ const intEnum: Enum<number> & Order<number> = Object.assign({
         return n + 1
     }
 
-}, intOrder)
+}
 
 /**
  * Impl. of an infinite enum for any int types (bounded types).
  */
-const intCyclicEnum: Enum<number> & Order<number> = Object.assign({
+const intCyclicEnum: Enum<number> & Order<number> = {
+
+    ...intOrder,
 
     predecessor (this: Bounded<number>, n: number): number {
         if (n === this.bottom) {
@@ -65,7 +69,7 @@ const intCyclicEnum: Enum<number> & Order<number> = Object.assign({
         }
     }
 
-}, intOrder)
+}
 
 
 export {

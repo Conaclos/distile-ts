@@ -31,8 +31,10 @@ const safeIntBounds: Bounded<number> = {
     top: SAFE_INT_TOP
 }
 
-const safeIntImpl: Bounded<number> & Order<number> & Enum<number> =
-    Object.assign({}, intEnum, safeIntBounds)
+const safeIntImpl: Bounded<number> & Order<number> & Enum<number> = {
+    ...intEnum,
+    ...safeIntBounds
+}
 
 
 export {

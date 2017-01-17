@@ -31,8 +31,10 @@ const uint8Bounds: Bounded<number> = {
     top: UINT8_TOP
 }
 
-const uint8Impl: Bounded<number> & Order<number> & Enum<number> =
-    Object.assign({}, intEnum, uint8Bounds)
+const uint8Impl: Bounded<number> & Order<number> & Enum<number> = {
+    ...intEnum,
+    ...uint8Bounds
+}
 
 
 export {

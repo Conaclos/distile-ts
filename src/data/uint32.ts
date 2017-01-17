@@ -31,8 +31,10 @@ const uint32Bounds: Bounded<number> = {
     top: UINT32_TOP
 }
 
-const uint32Impl: Bounded<number> & Order<number> & Enum<number> =
-    Object.assign({}, intEnum, uint32Bounds)
+const uint32Impl: Bounded<number> & Order<number> & Enum<number> = {
+    ...intEnum,
+    ...uint32Bounds
+}
 
 
 export {

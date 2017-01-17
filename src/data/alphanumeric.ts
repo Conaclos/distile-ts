@@ -73,7 +73,9 @@ function isAlphanumericChar (a: string): a is AlphanumericChar {
 // Impl.
 
 const alphanumericCharImpl: Bounded<AlphanumericChar> &
-    Order<AlphanumericChar> & Enum<AlphanumericChar> = Object.assign({
+    Order<AlphanumericChar> & Enum<AlphanumericChar> = {
+
+    ...compareBasedOrder,
 
     bottom: <AlphanumericChar> "0",
     top: <AlphanumericChar> "z",
@@ -112,7 +114,7 @@ const alphanumericCharImpl: Bounded<AlphanumericChar> &
         }
     }
 
-}, compareBasedOrder)
+}
 
 
 export {

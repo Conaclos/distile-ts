@@ -10,7 +10,10 @@ const numberBounds: Bounded<number> = {
     top: Number.MAX_VALUE
 }
 
-const numberImpl: Bounded<number> & Order<number> = Object.assign({
+const numberImpl: Bounded<number> & Order<number> = {
+
+    ...compareBasedOrder,
+    ...numberBounds,
 
     compare (a: number, b: number): Ordering {
         const signA = Math.sign(a)
@@ -37,7 +40,7 @@ const numberImpl: Bounded<number> & Order<number> = Object.assign({
         }
     }
 
-}, compareBasedOrder, numberBounds)
+}
 
 export {
     numberBounds,

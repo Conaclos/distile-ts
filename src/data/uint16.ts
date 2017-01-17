@@ -31,8 +31,10 @@ const uint16Bounds: Bounded<number> = {
     top: UINT16_TOP
 }
 
-const uint16Impl: Bounded<number> & Order<number> & Enum<number> =
-    Object.assign({}, intEnum, uint16Bounds)
+const uint16Impl: Bounded<number> & Order<number> & Enum<number> = {
+    ...intEnum,
+    ...uint16Bounds
+}
 
 
 export {

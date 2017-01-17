@@ -34,13 +34,15 @@ const equalBasedComparator = {
 /**
  * Impl. of strict comparison
  */
-const strictComparator: Comparator<any> = Object.assign({
+const strictComparator: Comparator<any> = {
+
+    ...equalBasedComparator,
 
     equal (a: any, b: any): boolean {
         return a === b
     }
 
-}, equalBasedComparator)
+}
 
 
 export {

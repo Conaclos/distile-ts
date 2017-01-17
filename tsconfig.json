@@ -4,7 +4,7 @@
     "declaration": true,
     "lib": ["dom", "es6"],
     "module": "commonjs",
-    "noEmitHelpers": true,
+    "noEmitHelpers": false,
     "removeComments": true,
     "skipDefaultLibCheck": true,
     "sourceMap": true,

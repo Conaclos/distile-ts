@@ -12,8 +12,9 @@ const BINARY_TOP = true
 
 // Impl.
 
-const binaryImpl: Bounded<boolean> & Order<boolean> & Enum<boolean> =
-    Object.assign({
+const binaryImpl: Bounded<boolean> & Order<boolean> & Enum<boolean> = {
+
+    ...compareBasedOrder,
 
     bottom: BINARY_BOTTOM,
     top: BINARY_TOP,
@@ -38,7 +39,7 @@ const binaryImpl: Bounded<boolean> & Order<boolean> & Enum<boolean> =
         return true
     }
 
-}, compareBasedOrder)
+}
 
 
 export {
