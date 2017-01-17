@@ -71,7 +71,9 @@ interface Order <T> extends Comparator<T> {
 /**
  * Partial impl. based on `compare'.
  */
-const compareBasedOrder = Object.assign({
+const compareBasedOrder = {
+
+    ...equalBasedComparator,
 
     equal <T> (this: Order<T>, a: T, b: T): boolean {
         return this.compare(a, b) === Ordering.Equal
@@ -109,12 +111,14 @@ const compareBasedOrder = Object.assign({
         }
     }
 
-}, equalBasedComparator)
+}
 
 /**
  * Impl. for any int types.
  */
-const intOrder: Order<number> = Object.assign({
+const intOrder: Order<number> = {
+
+    ...compareBasedOrder,
 
     compare (a: number, b: number): Ordering {
         if (a < b) {
@@ -126,12 +130,14 @@ const intOrder: Order<number> = Object.assign({
         }
     }
 
-}, compareBasedOrder)
+}
 
 /**
  * Impl. for any characters.
  */
-const charOrder: Order<string> = Object.assign({
+const charOrder: Order<string> = {
+
+    ...compareBasedOrder,
 
     compare (a: string, b: string): Ordering {
         console.assert(a.length === 1)
@@ -140,7 +146,7 @@ const charOrder: Order<string> = Object.assign({
         return intOrder.compare(a.charCodeAt(0), b.charCodeAt(0))
     }
 
-}, compareBasedOrder)
+}
 
 
 export {
