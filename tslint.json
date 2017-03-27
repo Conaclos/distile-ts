@@ -39,7 +39,7 @@
     "no-unused-new": true,
     "no-var-keyword": true,
     "radix": true,
-    "triple-equals": true,
+    "triple-equals": [true, "allow-null-check"],
     "use-isnan": true,
 
     "eofline": true,
