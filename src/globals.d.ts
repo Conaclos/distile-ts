@@ -7,12 +7,6 @@
 
 
 /**
- * Any except null and undefined
- */
-type NonNull = boolean | number | string | symbol | Object
-
-
-/**
  * Property dictionary.
  */
 type Properties = {[f: string]: any}
