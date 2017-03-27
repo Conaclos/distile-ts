@@ -11,7 +11,7 @@ interface Comparator <T> {
      */
     equal (a: T, b: T): boolean
 
-    nullableEqual (a: T | null, b: T | null): boolean
+    nullableEqual (a: T | null | undefined, b: T | null | undefined): boolean
 
 }
 
@@ -21,11 +21,13 @@ interface Comparator <T> {
  */
 const equalBasedComparator = {
 
-    nullableEqual <T> (this: Comparator<T>, a: T | null, b: T | null): boolean {
-        if (a === null) {
-            return b === null
+    nullableEqual <T> (this: Comparator<T>,
+        a: T | null | undefined, b: T | null | undefined): boolean {
+
+        if (a == null) {
+            return b == null
         } else {
-            return b !== null && this.equal(a, b)
+            return b != null && this.equal(a, b)
         }
     }
 
