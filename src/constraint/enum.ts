@@ -10,13 +10,13 @@ interface Enum <T> {
 
     /**
      * @param a
-     * @return Element preceding `a` or null if none.
+     * @return Element preceding `a` or `a` if none.
      */
     predecessor (a: T): T
 
     /**
      * @param a
-     * @return Element succeding `a` or null if none.
+     * @return Element succeding `a` or `a` if none.
      */
     successor (a: T): T
 
