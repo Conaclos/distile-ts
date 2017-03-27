@@ -1,7 +1,7 @@
 
 import {Bounded} from "../constraint/bounded.js"
 import {Order, Ordering, compareBasedOrder} from "../constraint/order.js"
-import {Enum} from "../constraint/enum.js"
+import {Enum, infiniteEnum} from "../constraint/enum.js"
 
 
 // Constants
@@ -15,6 +15,7 @@ const BINARY_TOP = true
 const binaryImpl: Bounded<boolean> & Order<boolean> & Enum<boolean> = {
 
     ...compareBasedOrder,
+    ...infiniteEnum,
 
     bottom: BINARY_BOTTOM,
     top: BINARY_TOP,

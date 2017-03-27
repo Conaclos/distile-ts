@@ -1,4 +1,5 @@
 
+import {Comparator} from "./comparator.js"
 import {Order, intOrder} from "./order.js"
 import {Bounded} from "./bounded.js"
 
@@ -8,15 +9,29 @@ import {Bounded} from "./bounded.js"
  */
 interface Enum <T> {
 
+// Status
     /**
      * @param a
-     * @return Element preceding `a` or `a` if none.
+     * @return Has `a` a predecessor?
+     */
+    hasPredecessor (a: T): boolean
+
+    /**
+     * @param a
+     * @return Has `a` a successor?
+     */
+    hasSuccessor (a: T): boolean
+
+// Access
+    /**
+     * @param a
+     * @return Element preceding `a` if any.
      */
     predecessor (a: T): T
 
     /**
      * @param a
-     * @return Element succeding `a` or `a` if none.
+     * @return Element succeding `a` if any.
      */
     successor (a: T): T
 
@@ -24,23 +39,52 @@ interface Enum <T> {
 
 
 /**
+ * Partial impl. for all finite enum.
+ */
+const finiteEnum = {
+
+    hasPredecessor <T> (this: Bounded<T> & Comparator<T>, n: T): boolean {
+        return ! this.equal(n, this.bottom)
+    },
+
+    hasSuccessor <T> (this: Bounded<T> & Comparator<T>, n: T): boolean {
+        return ! this.equal(n, this.top)
+    }
+
+}
+
+/**
+ * Partial impl. for all infinite enum.
+ */
+const infiniteEnum = {
+
+    hasPredecessor <T> (this: Object, n: T): boolean {
+        return true
+    },
+
+    hasSuccessor <T> (this: Object, n: T): boolean {
+        return true
+    }
+
+}
+
+/**
  * Impl. for any int types.
  */
 const intEnum: Enum<number> & Order<number> = {
 
     ...intOrder,
+    ...finiteEnum,
 
-    predecessor (this: Bounded<number>, n: number): number {
-        console.assert(n > this.bottom,
-            "require: `n' is greater than `bottom'. n = ", n,
-            "bottom = ", this.bottom)
+    predecessor (this: Bounded<number> & Enum<number>, n: number): number {
+        console.assert(this.hasPredecessor(n),
+            "require: `n' has a predecessor. n = ", n)
         return n - 1
     },
 
-    successor (this: Bounded<number>, n: number): number {
-        console.assert(n < this.top,
-            "require: `n' is lower than `top'. n = ", n,
-            "top = ", this.top)
+    successor (this: Bounded<number> & Enum<number>, n: number): number {
+        console.assert(this.hasSuccessor(n),
+            "require: `n' has a successor. n = ", n)
         return n + 1
     }
 
@@ -52,6 +96,7 @@ const intEnum: Enum<number> & Order<number> = {
 const intCyclicEnum: Enum<number> & Order<number> = {
 
     ...intOrder,
+    ...infiniteEnum,
 
     predecessor (this: Bounded<number>, n: number): number {
         if (n === this.bottom) {
@@ -74,6 +119,8 @@ const intCyclicEnum: Enum<number> & Order<number> = {
 
 export {
     Enum,
+    finiteEnum,
+    infiniteEnum,
     intEnum,
     intCyclicEnum
 }

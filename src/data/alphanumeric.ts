@@ -6,7 +6,7 @@ import {
     compareBasedOrder,
     charOrder
 } from "../constraint/order.js"
-import {Enum} from "../constraint/enum.js"
+import {Enum, infiniteEnum} from "../constraint/enum.js"
 
 
 type NumericChar = "0" | "1" | "2" | "3" | "4" | "5" | "6" | "7" | "8" | "9"
@@ -76,6 +76,7 @@ const alphanumericCharImpl: Bounded<AlphanumericChar> &
     Order<AlphanumericChar> & Enum<AlphanumericChar> = {
 
     ...compareBasedOrder,
+    ...infiniteEnum,
 
     bottom: <AlphanumericChar> "0",
     top: <AlphanumericChar> "z",
