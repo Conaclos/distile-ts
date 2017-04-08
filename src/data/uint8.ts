@@ -8,7 +8,7 @@ import {Enum, intEnum} from "../constraint/enum.js"
 // Constants
 
 const UINT8_BOTTOM = 0
-const UINT8_TOP = 0xffff
+const UINT8_TOP = 0xff
 
 
 // Type
