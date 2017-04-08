@@ -15,3 +15,5 @@ export * from "./data/uint16.js"
 export * from "./data/uint32.js"
 export * from "./data/safe_int.js"
 
+export * from "./counter.js"
+
