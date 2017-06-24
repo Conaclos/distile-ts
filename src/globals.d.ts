@@ -68,8 +68,11 @@ interface TypeableArray <T> extends ArrayLike<T> {
       * @return Is `aPred' satisfied by all items?
       */
     every (aPred:
-        (aItem: T, aIndex: number, aArray: TypeableArray<T>) => boolean,
-        aTarget?: any): boolean
+        (this: void, aItem: T, aIndex: number, aArray: TypeableArray<T>) => boolean,
+        aTarget?: undefined): boolean
+    every <Z> (aPred:
+        (this: Z, aItem: T, aIndex: number, aArray: TypeableArray<T>) => boolean,
+        aTarget: Z): boolean
 
     /**
       * @param aPred prdicate to test on the items
@@ -77,16 +80,22 @@ interface TypeableArray <T> extends ArrayLike<T> {
       * @return Is `aPred' satisfied by atleast one item?
       */
     some (aPred:
-        (aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
-        aTarget?: any): boolean
+        (this: void, aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
+            aTarget?: undefined): boolean
+    some <Z> (aPred:
+        (this: Z, aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
+        aTarget: Z): boolean
 
     /**
       * @param aConsumer Function to run for each item.
       * @param aTarget Value to use as this when calling `aConsumer'.
       */
     forEach (aConsumer:
-        (aItem: T, i: number, aArray: TypeableArray<T>) => void,
-        aTarget?: any): void
+        (this: void, aItem: T, i: number, aArray: TypeableArray<T>) => void,
+        aTarget?: undefined): void
+    forEach <Z> (aConsumer:
+        (this: Z, aItem: T, i: number, aArray: TypeableArray<T>) => void,
+        aTarget: Z): void
 
     /**
       * @param aMapper Function that produces an item of the new array.
@@ -94,8 +103,11 @@ interface TypeableArray <T> extends ArrayLike<T> {
       * @return New array mapping each item with `aMapper'.
       */
     map <U> (aProducer:
-        (aItem: T, i: number, array: TypeableArray<T>) => U,
-        aTarget?: any): MutableTypeableArray<U>
+        (this: void, aItem: T, i: number, array: TypeableArray<T>) => U,
+        aTarget?: undefined): MutableTypeableArray<U>
+    map <U, Z> (aProducer:
+        (this: Z, aItem: T, i: number, array: TypeableArray<T>) => U,
+        aTarget: Z): MutableTypeableArray<U>
 
     /**
       * @param aPred Function to test each element of the array.
@@ -103,8 +115,11 @@ interface TypeableArray <T> extends ArrayLike<T> {
       * @return New array with all items satisfying `aPred'.
       */
     filter (aPred:
-        (aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
-        aTarget?: any): MutableTypeableArray<T>
+        (this: void, aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
+        aTarget?: undefined): MutableTypeableArray<T>
+    filter <Z> (aPred:
+        (this: Z, aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
+        aTarget: Z): MutableTypeableArray<T>
 
     /**
       * @param aReducer Function to run for each item.
@@ -147,15 +162,21 @@ interface TypeableArray <T> extends ArrayLike<T> {
       * @param aTarget Value to use as this when calling `aPred'.
       * @return An item that satisfies `aPred' or undefined if none.
       */
-    find (aPred: (aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
-        aTarget?: any): T | undefined
+    find (aPred:
+        (this: void, aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
+        aTarget?: undefined): T | undefined
+    find <Z> (aPred:
+        (this: Z, aItem: T, i: number, aArray: TypeableArray<T>) => boolean,
+        aTarget: Z): T | undefined
 
      /**
       * @param aPred Function to run on each value in the array
       * @param aTarget Value to use as this when calling `aPred'.
       * @return Index of an item that satisfies `aPred' or -1 if none.
       */
-    findIndex (aPred: (aItem: T) => boolean, aTarget?: any): number
+    findIndex (aPred: (this: void, aItem: T) => boolean,
+        aTarget?: undefined): number
+    findIndex <Z> (this: Z, aPred: (aItem: T) => boolean, aTarget: Z): number
 
     /**
       * @return (key, value) pairs for every entry in the array.
@@ -238,9 +259,9 @@ interface MutableTypeableArray <T> extends TypeableArray<T> {
 }
 
 
-interface TypeableArrayConstructor <N> {
+interface TypeableArrayConstructor <T> {
 
-    new (aLength: number): MutableTypeableArray<N>
+    new (aLength: number): MutableTypeableArray<T>
 
     /**
      * @param aRef An array-like object to convert to an array.
@@ -248,24 +269,26 @@ interface TypeableArrayConstructor <N> {
      * @param aTarget Value used as this to call `aConverter'.
      * @return New array from `aRef'.
      */
-    from <T, U> (aRef: ArrayLike<T> | Iterable<T>,
-            aConverter: (v: T, k: number) => U,
-            atarget?: any): MutableTypeableArray<T>
+    from <U> (aRef: ArrayLike<U>,
+            aConverter: (this: void, v: U, k: number) => T,
+            atarget?: undefined): MutableTypeableArray<T>
+    from <U, Z> (aRef: ArrayLike<U>,
+            aConverter: (this: Z, v: U, k: number) => T,
+            atarget: Z): MutableTypeableArray<T>
 
     /**
      * @param aRef An array-like object to convert to an array.
      * @return New array from `aRef'.
      */
-    from <T> (aRef: ArrayLike<T> | Iterable<T>): MutableTypeableArray<T>
+    from (aRef: ArrayLike<T>): MutableTypeableArray<T>
 
     /**
      * @param aItems Set of items to include.
      * @return New array from `aItems'.
      */
-    of <T> (...aItems: T[]): MutableTypeableArray<T>
+    of (...aItems: T[]): MutableTypeableArray<T>
 
-    readonly prototype: MutableTypeableArray<N>
+    readonly prototype: MutableTypeableArray<T>
 
 }
-
 

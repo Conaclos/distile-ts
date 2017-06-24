@@ -8,7 +8,7 @@
     "removeComments": true,
     "skipDefaultLibCheck": true,
     "sourceMap": true,
-    "target": "ES6",
+    "target": "es6",
 
     "outDir": "./dist",
 
