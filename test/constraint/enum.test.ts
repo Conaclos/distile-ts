@@ -5,8 +5,8 @@ import {
     enumInv,
     unboundedEnumInv,
     cyclicEnumInv
-} from "../../test-macro"
-import {intEnum, intCyclicEnum, Bounded} from "../../src"
+} from "../macro"
+import {intEnum, intCyclicEnum, Bounded} from "../src"
 
 
 const MIN = Number.MIN_SAFE_INTEGER

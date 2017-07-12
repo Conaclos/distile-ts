@@ -1,8 +1,8 @@
 
 import test from "ava"
 import {AssertContext} from "ava"
-import {comparatorInv} from "../../test-macro"
-import {strictComparator} from "../../src"
+import {comparatorInv} from "../macro"
+import {strictComparator} from "../src"
 
 
 test("strict-equal-inv", comparatorInv, strictComparator, 1)

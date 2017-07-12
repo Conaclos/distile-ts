@@ -9,8 +9,8 @@ import {
     enumInv,
     isIntM,
     orderInv
-} from "../../test-macro"
-import {isUint16, uint16Impl} from "../../src"
+} from "../macro"
+import {isUint16, uint16Impl} from "../src"
 
 
 test("inv-boundedAbove", boundedAboveInv, uint16Impl, 0)

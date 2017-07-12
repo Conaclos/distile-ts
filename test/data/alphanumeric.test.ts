@@ -11,7 +11,7 @@ import {
     comparatorInv,
     enumInv,
     orderInv
-} from "../../test-macro"
+} from "../macro"
 import {
     isNumericChar,
     isAlphaUpperChar,
@@ -20,7 +20,7 @@ import {
     isAlphanumericLowerChar,
     isAlphanumericChar,
     alphanumericCharImpl
-} from "../../src"
+} from "../src"
 
 
 test("inv-boundedAbove", boundedAboveInv, alphanumericCharImpl, "a")

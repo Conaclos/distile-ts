@@ -7,8 +7,8 @@ import {
     boundedInv,
     comparatorInv,
     orderInv
-} from "../../test-macro"
-import {numberImpl} from "../../src"
+} from "../macro"
+import {numberImpl} from "../src"
 
 
 test("inv-boundedAbove", boundedAboveInv, numberImpl, 0)

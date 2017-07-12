@@ -6,8 +6,8 @@ import {
     comparatorInv,
     enumInv,
     orderInv
-} from "../test-macro"
-import {Counter, CounterData, uint8Impl, makeCounter} from "../src"
+} from "./macro"
+import {Counter, CounterData, uint8Impl, makeCounter} from "./src"
 
 
 const uint8CounterImpl: Counter<number> = makeCounter(uint8Impl, Uint8Array)

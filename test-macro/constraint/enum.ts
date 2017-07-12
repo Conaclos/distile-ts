@@ -1,6 +1,6 @@
 
 import {AssertContext} from "ava"
-import {Bounded, Comparator, Enum, Order} from "../../src"
+import {Bounded, Comparator, Enum, Order} from "../src"
 
 
 function enumInv <T> (t: AssertContext,

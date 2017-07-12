@@ -1,6 +1,6 @@
 
 import {AssertContext} from "ava"
-import {Order, Ordering} from "../../src"
+import {Order, Ordering} from "../src"
 
 
 function orderInv <T> (t: AssertContext, u: Order<T>, a: T, b: T): void {

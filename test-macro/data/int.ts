@@ -1,6 +1,6 @@
 
 import {AssertContext} from "ava"
-import {Bounded} from "../../src"
+import {Bounded} from "../src"
 
 function isIntM (t: AssertContext,
     f: (a: number) => boolean, u: Bounded<number>): void {

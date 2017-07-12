@@ -1,6 +1,6 @@
 
 import {AssertContext} from "ava"
-import {Comparator} from "../../src"
+import {Comparator} from "../src"
 
 function comparatorInv <T> (t: AssertContext, u: Comparator<T>, a: T): void {
     t.true(u.nullableEqual(null, null))

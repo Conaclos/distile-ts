@@ -1,14 +1,14 @@
 
 import test from "ava"
 import {AssertContext} from "ava"
-import {orderInv} from "../../test-macro"
+import {orderInv} from "../macro"
 import {
     Order,
     Ordering,
     intOrder,
     charOrder,
     compareBasedOrder
-} from "../../src"
+} from "../src"
 
 
 const MIN = Number.MIN_SAFE_INTEGER

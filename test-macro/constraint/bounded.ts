@@ -1,6 +1,6 @@
 
 import {AssertContext} from "ava"
-import {Order, Bounded, BoundedAbove, BoundedBelow} from "../../src"
+import {Order, Bounded, BoundedAbove, BoundedBelow} from "../src"
 
 
 function boundedAboveInv <T> (t: AssertContext,

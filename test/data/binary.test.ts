@@ -5,8 +5,8 @@ import {
     boundedInv,
     comparatorInv,
     orderInv
-} from "../../test-macro"
-import {binaryImpl} from "../../src"
+} from "../macro"
+import {binaryImpl} from "../src"
 
 
 test("inv-comparator", comparatorInv, binaryImpl, true)
