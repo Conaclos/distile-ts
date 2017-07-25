@@ -13,6 +13,15 @@ type Properties = {[f: string]: any}
 
 
 /**
+ * any is evil.
+ * Enable type-safe any type.
+ */
+type Any <T = object> = {
+    [k in keyof T]: Any<T[k]>
+} | boolean | number | string | symbol | null | undefined
+
+
+/**
  * Read-only typed or untyped array.
  */
 interface TypeableArray <T> extends ArrayLike<T> {
