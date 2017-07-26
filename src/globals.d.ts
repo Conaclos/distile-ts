@@ -16,8 +16,8 @@ type Properties = {[f: string]: any}
  * any is evil.
  * Enable type-safe any type.
  */
-type Any <T = object> = {
-    [k in keyof T]?: Any<T[k]>
+type SafeAny <T = object> = {
+    [k in keyof T]?: SafeAny<T[k]>
 } | boolean | number | string | symbol | null | undefined
 
 
