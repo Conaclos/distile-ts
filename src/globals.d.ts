@@ -17,7 +17,7 @@ type Properties = {[f: string]: any}
  * Enable type-safe any type.
  */
 type Any <T = object> = {
-    [k in keyof T]: Any<T[k]>
+    [k in keyof T]?: Any<T[k]>
 } | boolean | number | string | symbol | null | undefined
 
 
