@@ -20,7 +20,7 @@ type SafeIntData = number & {["@nominal-safeInt"]: undefined}
  * @return Is `n' convertible to an safeInt?
  */
 function isSafeInt (n: number): n is SafeIntData {
-    return Number.isInteger(n) && SAFE_INT_BOTTOM <= n && n <= SAFE_INT_TOP
+    return Number.isSafeInteger(n)
 }
 
 
