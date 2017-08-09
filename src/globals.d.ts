@@ -7,41 +7,6 @@
 
 
 /**
- * Property dictionary.
- */
-type Properties = {[f: string]: any}
-
-
-/**
- * any is evil. SafeAny offers a type-safe alternative.
- * SafeAny<object> is equivalent to (Object | null | undefined)
- *
- * SafeAny enables also to defensively test if an object is valid.
- * As an example assume the following type:
- *
- * ```
- * type Person = {fullname: string, birthYear: number}
- * ```
- *
- * We recieve a json string from the network. The source claims that this is
- * a Person. The folowing code provides a defensive test:
- *
- * ```
- * const o: SafeAny<Person> = JSON.parse(untrustedJson)
- * if (typeof o === "object" && o !== null &&
- *      typeof o.fullname === "string" && typeof o.birthYear === "number") {
- *
- *      // o is a Person
- * }
- * ```
- *
- */
-type SafeAny <T = object> = {
-    [k in keyof T]?: SafeAny<T[k]>
-} | boolean | number | string | symbol | null | undefined
-
-
-/**
  * Read-only typed or untyped array.
  */
 interface TypeableArray <T> extends ArrayLike<T> {

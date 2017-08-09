@@ -36,11 +36,11 @@ const equalBasedComparator = {
 /**
  * Impl. of strict comparison
  */
-const strictComparator: Comparator<SafeAny> = {
+const strictComparator: Comparator<Object | null | undefined> = {
 
     ...equalBasedComparator,
 
-    equal (a: SafeAny, b: SafeAny): boolean {
+    equal (a: Object | null | undefined, b: Object | null | undefined): boolean {
         return a === b
     }
 
