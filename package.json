@@ -13,7 +13,7 @@
   "files": [
     "dist/src/"
   ],
-  "typings": "dist/src/",
+  "types": "dist/src/",
   "scripts": {
     "ci": "create-index ./src",
     "build": "tsc",
@@ -22,7 +22,9 @@
     "lint": "tslint --project tsconfig.json",
     "release": "standard-version --sign",
     "test:unit": "npm run build && ava",
-    "test": "npm run test:unit && npm run lint"
+    "test": "npm run test:unit && npm run lint",
+    "commitmsg": "validate-commit-msg",
+    "prepush": "npm test"
   },
   "ava": {
     "files": [
@@ -37,6 +39,7 @@
   },
   "devDependencies": {
     "ava": "^0.17.0",
+    "husky": "^0.14.3",
     "nyc": "^10.0.0",
     "standard-version": "^4.0.0",
     "temp-write": "^2.1.0",
