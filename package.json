@@ -47,5 +47,7 @@
     "typescript": "next",
     "validate-commit-msg": "^2.8.2"
   },
-  "dependencies": {}
+  "dependencies": {
+    "typeable-array": "^1.0.0"
+  }
 }

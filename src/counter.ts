@@ -1,4 +1,6 @@
 
+import {TypeableArray, TypeableArrayConstructor} from "typeable-array"
+
 import {Bounded, BoundedBelow} from "./constraint/bounded.js"
 import {Comparator} from "./constraint/comparator.js"
 import {Enum} from "./constraint/enum.js"
@@ -77,7 +79,7 @@ const counterPartImpl = {
             i--
         }
 
-        let result: MutableTypeableArray<T>
+        let result: TypeableArray<T>
         if (i < 0) {
             // All values are equal to util.bottom
 
@@ -101,7 +103,7 @@ const counterPartImpl = {
             i--
         }
 
-        let result: MutableTypeableArray<T>
+        let result: TypeableArray<T>
         if (i < 0) {
             // All values are equal to util.top
 
