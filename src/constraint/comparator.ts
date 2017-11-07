@@ -9,9 +9,9 @@ interface Comparator <T> {
      * @param b
      * @return Are 'a' and 'b' equal?
      */
-    equal (a: T, b: T): boolean
+    equal: (a: T, b: T) => boolean
 
-    nullableEqual (a: T | null | undefined, b: T | null | undefined): boolean
+    nullableEqual: (a: T | null | undefined, b: T | null | undefined) => boolean
 
 }
 

@@ -14,26 +14,26 @@ interface Enum <T> {
      * @param a
      * @return Has `a` a predecessor?
      */
-    hasPredecessor (a: T): boolean
+    hasPredecessor: (a: T) => boolean
 
     /**
      * @param a
      * @return Has `a` a successor?
      */
-    hasSuccessor (a: T): boolean
+    hasSuccessor: (a: T) => boolean
 
 // Access
     /**
      * @param a
      * @return Element preceding `a` if any.
      */
-    predecessor (a: T): T
+    predecessor: (a: T) => T
 
     /**
      * @param a
      * @return Element succeding `a` if any.
      */
-    successor (a: T): T
+    successor: (a: T) => T
 
 }
 

@@ -21,49 +21,49 @@ interface Order <T> extends Comparator<T> {
      * @param b
      * @return Ordering between 'a' and 'b'?
      */
-    compare (a: T, b: T): Ordering
+    compare: (a: T, b: T) => Ordering
 
     /**
      * @param a
      * @param b
      * @return Is 'a' less than 'b'?
      */
-    less (a: T, b: T): boolean
+    less: (a: T, b: T) => boolean
 
     /**
      * @param a
      * @param b
      * @return Is 'a' less than or equal to 'b'?
      */
-    lessEqual (a: T, b: T): boolean
+    lessEqual: (a: T, b: T) => boolean
 
     /**
      * @param a
      * @param b
      * @return Is 'a' greater than 'b'?
      */
-    greater (a: T, b: T): boolean
+    greater: (a: T, b: T) => boolean
 
     /**
      * @param a
      * @param b
      * @return Is 'a' greater than or equal to 'b'?
      */
-    greaterEqual (a: T, b: T): boolean
+    greaterEqual: (a: T, b: T) => boolean
 
     /**
      * @param a
      * @param b
      * @return 'a' if 'a' is less than 'b' else 'b'
      */
-    min <U extends T, V extends T> (a: U, b: V): U | V
+    min: <U extends T, V extends T> (a: U, b: V) => U | V
 
     /**
      * @param a
      * @param b
      * @return 'a' if 'a' is greater than 'b' else 'b'
      */
-    max <U extends T, V extends T> (a: U, b: V): U | V
+    max: <U extends T, V extends T> (a: U, b: V) => U | V
 
 }
 
