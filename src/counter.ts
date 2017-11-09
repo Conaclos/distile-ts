@@ -4,7 +4,12 @@ import {TypeableArray, TypeableArrayConstructor} from "typeable-array"
 import {Bounded, BoundedBelow} from "./constraint/bounded.js"
 import {Comparator} from "./constraint/comparator.js"
 import {Enum} from "./constraint/enum.js"
-import {Order, Ordering, compareBasedOrder} from "./constraint/order.js"
+import {
+    Order,
+    Ordering,
+    PartOrder,
+    compareBasedOrder
+} from "./constraint/order.js"
 
 
 type CounterData<T> = TypeableArray<T>

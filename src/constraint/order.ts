@@ -12,16 +12,16 @@ const enum Ordering {
 }
 
 /**
- * Define comparison operations on totally ordered types.
+ * Define comparison operations on partially ordered types.
  */
-interface Order <T> extends Comparator<T> {
+interface PartOrder <T> extends Comparator<T> {
 
     /**
      * @param a
      * @param b
-     * @return Ordering between 'a' and 'b'?
+     * @return Ordering between 'a' and 'b' or undefined if unrelated?
      */
-    compare: (a: T, b: T) => Ordering
+    compare: (a: T, b: T) => Ordering | undefined
 
     /**
      * @param a
@@ -54,6 +54,27 @@ interface Order <T> extends Comparator<T> {
     /**
      * @param a
      * @param b
+     * @return Is there an order between 'a' and 'b'?
+     */
+    related: (a: T, b: T) => boolean
+
+}
+
+/**
+ * Define comparison operations on totally ordered types.
+ */
+interface Order <T> extends PartOrder<T> {
+
+    /**
+     * @param a
+     * @param b
+     * @return Ordering between 'a' and 'b'?
+     */
+    compare: (a: T, b: T) => Ordering
+
+    /**
+     * @param a
+     * @param b
      * @return 'a' if 'a' is less than 'b' else 'b'
      */
     min: <U extends T, V extends T> (a: U, b: V) => U | V
@@ -65,30 +86,56 @@ interface Order <T> extends Comparator<T> {
      */
     max: <U extends T, V extends T> (a: U, b: V) => U | V
 
-}
+    /**
+     * @param a
+     * @param b
+     * @return 'a' and 'b' are always related.
+     */
+    related: (a: T, b: T) => true
 
+}
 
 /**
  * Partial impl. based on `compare'.
  */
-const compareBasedOrder = {
+const compareBasedPartOrder = {
 
     ...equalBasedComparator,
 
-    equal <T> (this: Order<T>, a: T, b: T): boolean {
+    equal <T> (this: PartOrder<T>, a: T, b: T): boolean {
         return this.compare(a, b) === Ordering.Equal
     },
 
-    less <T> (this: Order<T>, a: T, b: T): boolean {
+    less <T> (this: PartOrder<T>, a: T, b: T): boolean {
         return this.compare(a, b) === Ordering.Less
     },
 
-    lessEqual <T> (this: Order<T>, a: T, b: T): boolean {
-        return this.compare(a, b) !== Ordering.Greater
+    lessEqual <T> (this: PartOrder<T>, a: T, b: T): boolean {
+        const ord = this.compare(a, b)
+        return ord === Ordering.Less || ord === Ordering.Equal
     },
 
-    greater <T> (this: Order<T>, a: T, b: T): boolean {
+    greater <T> (this: PartOrder<T>, a: T, b: T): boolean {
         return this.less(b, a)
+    },
+
+    greaterEqual <T> (this: PartOrder<T>, a: T, b: T): boolean {
+        const ord = this.compare(a, b)
+        return ord === Ordering.Greater || ord === Ordering.Equal
+    },
+
+    related <T> (this: PartOrder<T>, a: T, b: T): boolean {
+        return this.compare(a, b) !== undefined
+    }
+
+}
+
+const compareBasedOrder = {
+
+    ...compareBasedPartOrder,
+
+    lessEqual <T> (this: Order<T>, a: T, b: T): boolean {
+        return this.compare(a, b) !== Ordering.Greater
     },
 
     greaterEqual <T> (this: Order<T>, a: T, b: T): boolean {
@@ -109,12 +156,37 @@ const compareBasedOrder = {
         } else {
             return a
         }
+    },
+
+    related <T> (this: Order<T>, a: T, b: T): true {
+        return true
+    }
+
+}
+
+/**
+ * Impl. for boolean type.
+ * false < true
+ */
+const booleanOrder: Order<boolean> = {
+
+    ...compareBasedOrder,
+
+    compare (a: boolean, b: boolean): Ordering {
+        if (a === b) {
+            return Ordering.Equal
+        } else if (a) {
+            return Ordering.Greater
+        } else {
+            return Ordering.Less
+        }
     }
 
 }
 
 /**
  * Impl. for any int types.
+ * Natural order: ... < -1 < 0 < 1 < ...
  */
 const intOrder: Order<number> = {
 
@@ -134,6 +206,7 @@ const intOrder: Order<number> = {
 
 /**
  * Impl. for any characters.
+ * Natural order of UTF-16 char codes.
  */
 const charOrder: Order<string> = {
 
@@ -151,8 +224,11 @@ const charOrder: Order<string> = {
 
 export {
     Ordering,
+    PartOrder,
     Order,
+    compareBasedPartOrder,
     compareBasedOrder,
+    booleanOrder,
     intOrder,
     charOrder
 }
