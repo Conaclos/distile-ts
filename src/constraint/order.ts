@@ -116,7 +116,7 @@ const compareBasedPartOrder = {
     },
 
     greater <T> (this: PartOrder<T>, a: T, b: T): boolean {
-        return this.less(b, a)
+        return this.compare(a, b) === Ordering.Greater
     },
 
     greaterEqual <T> (this: PartOrder<T>, a: T, b: T): boolean {
@@ -195,10 +195,10 @@ const intOrder: Order<number> = {
     compare (a: number, b: number): Ordering {
         if (a < b) {
             return Ordering.Less
-        } else if (a === b) {
-            return Ordering.Equal
-        } else {
+        } else if (a > b) {
             return Ordering.Greater
+        } else {
+            return Ordering.Equal
         }
     }
 
