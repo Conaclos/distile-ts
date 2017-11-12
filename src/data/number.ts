@@ -28,9 +28,7 @@ const numberImpl: Bounded<number> & Order<number> = {
                 return Ordering.Greater
             }
         } else {
-            if (Math.sign(a - signA * Number.EPSILON) !== signA &&
-                Math.sign(b - signB * Number.EPSILON) !== signB) {
-
+            if (Math.abs(a + b) < Number.EPSILON) {
                 return Ordering.Equal
             } else if (signA === -1 || signB === 1) {
                 return Ordering.Less
