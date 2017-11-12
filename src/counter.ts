@@ -67,7 +67,7 @@ const counterPartImpl = {
         return aRef.length > 0
     },
 
-    hasSuccessor <T> (this: Counter<T>, aRef: CounterData<T>): boolean {
+    hasSuccessor <T> (this: Counter<T>, aRef: CounterData<T>): true {
         return true
     },
 
