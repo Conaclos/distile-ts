@@ -165,26 +165,6 @@ const compareBasedOrder = {
 }
 
 /**
- * Impl. for boolean type.
- * false < true
- */
-const booleanOrder: Order<boolean> = {
-
-    ...compareBasedOrder,
-
-    compare (a: boolean, b: boolean): Ordering {
-        if (a === b) {
-            return Ordering.Equal
-        } else if (a) {
-            return Ordering.Greater
-        } else {
-            return Ordering.Less
-        }
-    }
-
-}
-
-/**
  * Impl. for any int types.
  * Natural order: ... < -1 < 0 < 1 < ...
  */
@@ -228,7 +208,6 @@ export {
     Order,
     compareBasedPartOrder,
     compareBasedOrder,
-    booleanOrder,
     intOrder,
     charOrder
 }
