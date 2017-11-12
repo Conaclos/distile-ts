@@ -1,11 +1,19 @@
 
 import test from "ava"
 import {AssertContext} from "ava"
-import {comparatorInv} from "../macro"
+import {
+    comparatorInv0,
+    comparatorInv1,
+    comparatorInv2
+} from "../macro"
 import {strictComparator} from "../src"
 
 
-test("strict-equal-inv", comparatorInv, strictComparator, 1)
+test("strict-equal-inv", [
+        comparatorInv0,
+        comparatorInv1,
+        comparatorInv2
+    ], strictComparator, 1, 2)
 
 test("strict-equal", (t: AssertContext) => {
     const ref = {}

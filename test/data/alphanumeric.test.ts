@@ -8,9 +8,15 @@ import {
     boundedAboveInv,
     boundedBelowInv,
     boundedInv,
-    comparatorInv,
+    comparatorInv0,
+    comparatorInv1,
+    comparatorInv2,
     enumInv,
-    orderInv
+    orderInv1,
+    partOrderInv1,
+    orderInv2,
+    partOrderInv2,
+    partOrderInv3
 } from "../macro"
 import {
     isNumericChar,
@@ -22,22 +28,37 @@ import {
     alphanumericCharImpl
 } from "../src"
 
+const testedValues = [
+    alphanumericCharImpl.bottom,
+    "a",
+    "9",
+    alphanumericCharImpl.top
+]
 
-test("inv-boundedAbove", boundedAboveInv, alphanumericCharImpl, "a")
-test("inv-boundedBelow", boundedBelowInv, alphanumericCharImpl, "a")
 test("inv-bounded", boundedInv, alphanumericCharImpl)
+test("inv0-comparator", comparatorInv0, alphanumericCharImpl)
 
-test("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
-    alphanumericCharImpl.bottom)
-test("inv-comparatorInv", comparatorInv, alphanumericCharImpl, "a")
-test("inv-comparatorInv", comparatorInv, alphanumericCharImpl,
-    alphanumericCharImpl.top)
+for (const x of testedValues) {
+    test("inv1-bounded", [boundedAboveInv, boundedBelowInv], alphanumericCharImpl, x)
+    test("inv1-comparator", comparatorInv1, alphanumericCharImpl, x)
+    test("inv1-order", [orderInv1, partOrderInv1], alphanumericCharImpl, x)
+
+    for (const y of testedValues) {
+        if (x !== y) {
+            test(comparatorInv2, alphanumericCharImpl, x, y)
+            test("inv2-order", [orderInv2, partOrderInv2], alphanumericCharImpl, x, y)
+
+            for (const z of testedValues) {
+                if (x !== z && y !== z) {
+                    test("inv3-partorder", partOrderInv3, alphanumericCharImpl, x, y, z)
+                }
+            }
+        }
+    }
+}
 
 test("inv-enum", enumInv, alphanumericCharImpl, "a")
 test("inv-enum", enumInv, alphanumericCharImpl, "9")
-
-test("inv-order", orderInv, alphanumericCharImpl,
-    alphanumericCharImpl.top, alphanumericCharImpl.bottom)
 
 test("isNumericChar", numericCharM, isNumericChar, true)
 test("isNumericChar", alphaLowerCharM, isNumericChar, false)

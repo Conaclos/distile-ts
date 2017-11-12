@@ -5,25 +5,49 @@ import {
     boundedAboveInv,
     boundedBelowInv,
     boundedInv,
-    comparatorInv,
+    comparatorInv0,
+    comparatorInv1,
+    comparatorInv2,
     enumInv,
     isIntM,
-    orderInv
+    orderInv1,
+    partOrderInv1,
+    orderInv2,
+    partOrderInv2,
+    partOrderInv3
 } from "../macro"
 import {isUint32, uint32Impl} from "../src"
 
 
-test("inv-boundedAbove", boundedAboveInv, uint32Impl, 0)
-test("inv-boundedBelow", boundedBelowInv, uint32Impl, 0)
-test("inv-bounded", boundedInv, uint32Impl)
+const testedValues = [
+    uint32Impl.bottom,
+    0,
+    uint32Impl.top
+]
 
-test("inv-comparator", comparatorInv, uint32Impl, uint32Impl.top)
-test("inv-comparator", comparatorInv, uint32Impl, uint32Impl.bottom)
+test("inv-bounded", boundedInv, uint32Impl)
+test("inv0-comparator", comparatorInv0, uint32Impl)
+
+for (const x of testedValues) {
+    test("inv1-bounded", [boundedAboveInv, boundedBelowInv], uint32Impl, x)
+    test("inv1-comparator", comparatorInv1, uint32Impl, x)
+    test("inv1-order", [orderInv1, partOrderInv1], uint32Impl, x)
+
+    for (const y of testedValues) {
+        if (x !== y) {
+            test(comparatorInv2, uint32Impl, x, y)
+            test("inv2-order", [orderInv2, partOrderInv2], uint32Impl, x, y)
+
+            for (const z of testedValues) {
+                if (x !== z && y !== z) {
+                    test("inv3-partorder", partOrderInv3, uint32Impl, x, y, z)
+                }
+            }
+        }
+    }
+}
 
 test("inv-enum", enumInv, uint32Impl, 1)
-
-test("inv-order", orderInv, uint32Impl,
-    uint32Impl.top, uint32Impl.bottom)
 
 test("isUint32", isIntM, isUint32, uint32Impl)
 

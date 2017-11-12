@@ -1,7 +1,13 @@
 
 import test from "ava"
 import {AssertContext} from "ava"
-import {orderInv} from "../macro"
+import {
+    orderInv1,
+    partOrderInv1,
+    orderInv2,
+    partOrderInv2,
+    partOrderInv3
+} from "../macro"
 import {
     Order,
     Ordering,
@@ -10,36 +16,6 @@ import {
     compareBasedOrder
 } from "../src"
 
-
-const MIN = Number.MIN_SAFE_INTEGER
-const MAX = Number.MAX_SAFE_INTEGER
-
-test("intOrder-inv-diff-values", orderInv, intOrder, MIN, MAX)
-test("intOrder-inv-equal-values", orderInv, intOrder, 0, 0)
-
-test("intOrder-compare-equal", (t: AssertContext) => {
-    t.true(intOrder.less(MIN, MAX))
-    t.true(intOrder.less(0, 1))
-    t.true(intOrder.less(-1, 0))
-
-    t.true(intOrder.equal(MAX, MAX))
-    t.true(intOrder.equal(1, 1))
-    t.true(intOrder.equal(0, 0))
-    t.true(intOrder.equal(-1, -1))
-    t.true(intOrder.equal(MIN, MIN))
-})
-
-test("charOrder-inv-diff-values", orderInv, charOrder, "a", "0")
-test("charOrder-inv-equal-values", orderInv, charOrder, "a", "a")
-
-test("charOrder-compare-equal", (t: AssertContext) => {
-    t.true(charOrder.less("0", "1"))
-    t.true(charOrder.less("9", "a"))
-    t.true(charOrder.less("a", "b"))
-
-    t.true(charOrder.equal("0", "0"))
-    t.true(charOrder.equal("a", "a"))
-})
 
 const bottom = {}
 const top = {}
@@ -56,9 +32,18 @@ const impl: Order<Object> = Object.assign({
         }
     }
 }, compareBasedOrder)
+const testedValues = [bottom, top]
 
-test("compareBased-inv-diff-values", orderInv, impl, top, bottom)
-test("compareBased-inv-equal-values", orderInv, impl, top, top)
+
+for (const x of testedValues) {
+    test("inv1-order", [orderInv1, partOrderInv1], intOrder, x)
+
+    for (const y of testedValues) {
+        if (x !== y) {
+            test("inv2-order", [orderInv2, partOrderInv2], intOrder, x, y)
+        }
+    }
+}
 
 test("compareBasedOrder", (t: AssertContext) => {
 

@@ -5,27 +5,51 @@ import {
     boundedAboveInv,
     boundedBelowInv,
     boundedInv,
-    comparatorInv,
+    comparatorInv0,
+    comparatorInv1,
+    comparatorInv2,
     enumInv,
     isIntM,
-    orderInv
+    orderInv1,
+    partOrderInv1,
+    orderInv2,
+    partOrderInv2,
+    partOrderInv3
 } from "../macro"
 import {isSafeInt, safeIntImpl} from "../src"
 
 
-test("inv-boundedAbove", boundedAboveInv, safeIntImpl, 0)
-test("inv-boundedBelow", boundedBelowInv, safeIntImpl, 0)
-test("inv-bounded", boundedInv, safeIntImpl)
+const testedValues = [
+    safeIntImpl.bottom,
+    0,
+    safeIntImpl.top
+]
 
-test("inv-comparator", comparatorInv, safeIntImpl, safeIntImpl.top)
-test("inv-comparator", comparatorInv, safeIntImpl, safeIntImpl.bottom)
+test("inv-bounded", boundedInv, safeIntImpl)
+test("inv0-comparator", comparatorInv0, safeIntImpl)
+
+for (const x of testedValues) {
+    test("inv1-bounded", [boundedAboveInv, boundedBelowInv], safeIntImpl, x)
+    test("inv1-comparator", comparatorInv1, safeIntImpl, x)
+    test("inv1-order", [orderInv1, partOrderInv1], safeIntImpl, x)
+
+    for (const y of testedValues) {
+        if (x !== y) {
+            test(comparatorInv2, safeIntImpl, x, y)
+            test("inv2-order", [orderInv2, partOrderInv2], safeIntImpl, x, y)
+
+            for (const z of testedValues) {
+                if (x !== z && y !== z) {
+                    test("inv3-partorder", partOrderInv3, safeIntImpl, x, y, z)
+                }
+            }
+        }
+    }
+}
 
 test("inv-enum", enumInv, safeIntImpl, -1)
 test("inv-enum", enumInv, safeIntImpl, 0)
 test("inv-enum", enumInv, safeIntImpl, 1)
-
-test("inv-order", orderInv, safeIntImpl,
-    safeIntImpl.top, safeIntImpl.bottom)
 
 test("issafeInt", isIntM, isSafeInt, safeIntImpl)
 
